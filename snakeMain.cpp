@@ -11,13 +11,24 @@
 using namespace std;
 
 
-int x, y, foodX, foodY;				// X, Y Coordinate
-int width = 75;						// Cage width
-int height = 35;					// Cage height
+class Something
+{
+private:
+	int x, y, foodX, foodY;				// X, Y Coordinate
+public:
+	int width = 75;						// Cage width
+	int height = 35;					// Cage height
+	bool gameOver = false;				// logic
+	enum direction {START = 0, LEFT, RIGHT, UP, DOWN}; // for the direction
+	direction dir;
+	
+	Something(int, int);
+};
 
-bool gameOver = false;				// logic
-enum direction {START = 0, LEFT, RIGHT, UP, DOWN}; // for the direction
-direction dir;
+Something::Something(int x, int y){
+	this->x = x;
+	this->y= y;
+}
 
 void base();
 void cage();
@@ -41,9 +52,9 @@ int main(){
 
 
 void base(){					// Base logic
-	
-	gameOver = false;
-	dir = START;
+	Something something;
+	something.gameOver = false;
+	something.dir = START;
 	x = width/2;
 	y = height/2;
 	foodX = rand() % width;		//Generate random food X coordinate
